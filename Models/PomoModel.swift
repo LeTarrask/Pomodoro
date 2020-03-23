@@ -18,26 +18,14 @@ final class PomoModel: ObservableObject {
     
     @Published var timerRunning = false
     
-    var counter = Counter.working
-    
+    var counter = 0.0
+        
     @Published var seconds = 0.0
     
     @Published var label = ""
     
     func createTimer() {
-        switch isResting {
-        case false:
-            counter = Counter.working
-        case true:
-            if pomosCompleted % 4 == 0 {
-                counter = Counter.superRest
-            } else {
-                counter = Counter.resting
-            }
-        }
-        
-        print(counter)
-        seconds = counter.rawValue
+        seconds = counter
         startTimer()
     }
     
@@ -69,7 +57,14 @@ final class PomoModel: ObservableObject {
             
             if isResting {
                 pomosCompleted += 1
+                if pomosCompleted % 4 == 0 {
+                    counter = 1200.0
+                } else if isResting {
+                    counter = 300.0
+                }
                 createTimer()
+            } else {
+                counter = 1500.0
             }
         }
     }
@@ -81,12 +76,6 @@ final class PomoModel: ObservableObject {
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
-}
-
-enum Counter: Double {
-    case working = 15.0 // divided by 100 for testing purposes
-    case resting = 3.0 // divided by 100 for testing purposes
-    case superRest = 12.0 // divided by 100 for testint purposes
 }
 
 

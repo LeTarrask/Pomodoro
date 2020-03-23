@@ -11,6 +11,8 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var pomoModel = PomoModel()
     
+    @State var selectedTime = 1500.0
+        
     var body: some View {
         ZStack {
             if pomoModel.isResting {
@@ -26,8 +28,22 @@ struct ContentView: View {
                 Text("Pomodoros completed: \(pomoModel.pomosCompleted)")
                     .font(.subheadline)
                 if pomoModel.seconds < 1 {
-                    Button(action: { self.pomoModel.createTimer() },
-                    label: { Text("Start Pomo")})
+                    VStack {
+                        Text("Next Pomodoro duration:")
+                        Picker(selection: $selectedTime, label: Text("Pomodoro: "), content: {
+                            Text("15").tag(900.0)
+                            Text("20").tag(1200.0)
+                            Text("25").tag(1500.0)
+                            Text("30").tag(1800.0)
+                            Text("35").tag(2100.0)
+                            }).pickerStyle(SegmentedPickerStyle())
+                        Button(action: {
+                            self.pomoModel.counter = self.selectedTime
+                            
+                            self.pomoModel.createTimer()
+                        },
+                        label: { Text("Start Pomo")})
+                    }
                 } else {
                     VStack(alignment: .leading, spacing: 10) {
                         Text(pomoModel.label)
