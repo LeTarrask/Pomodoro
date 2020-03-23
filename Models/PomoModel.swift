@@ -16,7 +16,6 @@ final class PomoModel: ObservableObject {
     var timer: Timer?
     
     func startPomo() {
-        print("Pomo counter started")
         var counter = Counter.working
 
         switch isResting {
@@ -35,8 +34,6 @@ final class PomoModel: ObservableObject {
     }
     
     @objc func endPomo() {
-        print("Pomo ended")
-        
         self.isResting.toggle()
         
         if isResting {
