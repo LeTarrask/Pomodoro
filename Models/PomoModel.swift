@@ -7,9 +7,15 @@
 //
 
 import Foundation
+import Combine
 
-class PomoModel: ObservableObject {
-    var pomosCompleted: Int = 0
+final class PomoModel: ObservableObject {
+    @Published var pomosCompleted: Int = 0 {
+        willSet { self.objectWillChange.send() }
+    }
+    
+    let objectWillChange = ObservableObjectPublisher()
+    
     var isResting = false
     
     var timer: Timer?
@@ -25,21 +31,24 @@ class PomoModel: ObservableObject {
             counter = Counter.resting
         }
         
+        print(counter)
         timer = Timer.scheduledTimer(timeInterval: counter.rawValue,
                                      target: self,
                                      selector: #selector(endPomo),
                                      userInfo: nil,
-                                     repeats: true)
+                                     repeats: false)
     }
     
     @objc func endPomo() {
         print("Pomo ended")
         
-        if !isResting {
+        self.isResting.toggle()
+        
+        if isResting {
             pomosCompleted += 1
-            isResting.toggle()
             startPomo()
         }
+        
     }
 }
 

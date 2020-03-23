@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let pomoModel = PomoModel()
+    var pomoModel = PomoModel()
     
     var body: some View {
         VStack {
