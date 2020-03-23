@@ -36,11 +36,19 @@ final class PomoModel: ObservableObject {
         
         print(counter)
         seconds = counter.rawValue
+        startTimer()
+    }
+    
+    func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1.0,
-                                     target: self,
-                                     selector: #selector(updateTime),
-                                     userInfo: nil,
-                                     repeats: true)
+        target: self,
+        selector: #selector(updateTime),
+        userInfo: nil,
+        repeats: true)
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
     }
     
     @objc func updateTime() {
