@@ -15,6 +15,7 @@ class PomoModel: ObservableObject {
     var timer: Timer?
     
     func startPomo() {
+        print("Pomo counter started")
         var counter = Counter.working
 
         switch isResting {
@@ -43,8 +44,8 @@ class PomoModel: ObservableObject {
 }
 
 enum Counter: Double {
-    case working = 1500.0
-    case resting = 300.0
+    case working = 15.0 // divided by 100 for testing purposes
+    case resting = 3.0 // divided by 100 for testing purposes
 }
 
 

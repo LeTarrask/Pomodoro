@@ -9,8 +9,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    let pomoModel = PomoModel()
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("Pomodoro tracker")
+            Text("Pomodoros completed: \(pomoModel.pomosCompleted)")
+            Button(action: { self.pomoModel.startPomo() },
+                   label: { Text("Start Pomo")})
+        }
     }
 }
 
