@@ -44,11 +44,9 @@ final class PomoModel: ObservableObject {
     }
     
     @objc func updateTime() {
-        seconds -= 1
-        
-        print(seconds)
-        
         label = timeString(time: seconds)
+        
+        seconds -= 1
         
         if seconds < 1 {
             timer?.invalidate()
