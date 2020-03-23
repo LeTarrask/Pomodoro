@@ -22,7 +22,11 @@ final class PomoModel: ObservableObject {
         case false:
             counter = Counter.working
         case true:
-            counter = Counter.resting
+            if pomosCompleted % 4 == 0 {
+                counter = Counter.superRest
+            } else {
+                counter = Counter.resting
+            }
         }
         
         print(counter)
@@ -47,6 +51,7 @@ final class PomoModel: ObservableObject {
 enum Counter: Double {
     case working = 15.0 // divided by 100 for testing purposes
     case resting = 3.0 // divided by 100 for testing purposes
+    case superRest = 12.0 // divided by 100 for testint purposes
 }
 
 
