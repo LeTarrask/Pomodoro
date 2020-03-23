@@ -16,6 +16,8 @@ final class PomoModel: ObservableObject {
     
     var timer: Timer?
     
+    @Published var timerRunning = false
+    
     var counter = Counter.working
     
     @Published var seconds = 0.0
@@ -40,6 +42,7 @@ final class PomoModel: ObservableObject {
     }
     
     func startTimer() {
+        timerRunning = true
         timer = Timer.scheduledTimer(timeInterval: 1.0,
         target: self,
         selector: #selector(updateTime),
@@ -48,6 +51,7 @@ final class PomoModel: ObservableObject {
     }
     
     func stopTimer() {
+        timerRunning = false
         timer?.invalidate()
     }
     
@@ -57,7 +61,7 @@ final class PomoModel: ObservableObject {
         seconds -= 1
         
         if seconds < 1 {
-            timer?.invalidate()
+            stopTimer()
             
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) // Makes the phone vibrate
             

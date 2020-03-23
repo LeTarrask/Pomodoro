@@ -29,7 +29,20 @@ struct ContentView: View {
                     Button(action: { self.pomoModel.createTimer() },
                     label: { Text("Start Pomo")})
                 } else {
-                    Text(pomoModel.label)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(pomoModel.label)
+                        if pomoModel.timerRunning {
+                            Button(action: { self.pomoModel.stopTimer() },
+                            label: { Text("Pause Timer")})
+                        } else {
+                            HStack {
+                                Button(action: { self.pomoModel.startTimer() },
+                                label: { Text("Restart Timer")})
+                                Button(action: { self.pomoModel.seconds = 0.0 },
+                                label: { Text("Reset Timer")})
+                            }
+                        }
+                    }
                 }
             }
             .padding(20)
