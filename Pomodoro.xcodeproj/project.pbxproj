@@ -16,6 +16,7 @@
 		793651E82428F0E60055DBAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 793651E62428F0E60055DBAE /* LaunchScreen.storyboard */; };
 		793651F32428F0E60055DBAE /* PomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793651F22428F0E60055DBAE /* PomodoroTests.swift */; };
 		793651FE2428F0E60055DBAE /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793651FD2428F0E60055DBAE /* PomodoroUITests.swift */; };
+		7936520D2428F1FE0055DBAE /* PomoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7936520C2428F1FE0055DBAE /* PomoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		793651F92428F0E60055DBAE /* PomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		793651FD2428F0E60055DBAE /* PomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroUITests.swift; sourceTree = "<group>"; };
 		793651FF2428F0E60055DBAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7936520C2428F1FE0055DBAE /* PomoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		793651CC2428F0E00055DBAE = {
 			isa = PBXGroup;
 			children = (
+				7936520B2428F1E30055DBAE /* Models */,
 				793651D72428F0E00055DBAE /* Pomodoro */,
 				793651F12428F0E60055DBAE /* PomodoroTests */,
 				793651FC2428F0E60055DBAE /* PomodoroUITests */,
@@ -137,6 +140,14 @@
 				793651FF2428F0E60055DBAE /* Info.plist */,
 			);
 			path = PomodoroUITests;
+			sourceTree = "<group>";
+		};
+		7936520B2428F1E30055DBAE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7936520C2428F1FE0055DBAE /* PomoModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +284,7 @@
 				793651DE2428F0E00055DBAE /* Pomodoro.xcdatamodeld in Sources */,
 				793651D92428F0E00055DBAE /* AppDelegate.swift in Sources */,
 				793651E02428F0E00055DBAE /* ContentView.swift in Sources */,
+				7936520D2428F1FE0055DBAE /* PomoModel.swift in Sources */,
 				793651DB2428F0E00055DBAE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
