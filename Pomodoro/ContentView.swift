@@ -12,11 +12,22 @@ struct ContentView: View {
     @ObservedObject var pomoModel = PomoModel()
     
     var body: some View {
-        VStack {
-            Text("Pomodoro tracker")
-            Text("Pomodoros completed: \(pomoModel.pomosCompleted)")
-            Button(action: { self.pomoModel.startPomo() },
-                   label: { Text("Start Pomo")})
+        ZStack {
+            if pomoModel.isResting {
+                Color.green
+                    .edgesIgnoringSafeArea(.all)
+            } else {
+                Color.red
+                    .edgesIgnoringSafeArea(.all)
+            }
+            VStack {
+                Text("Pomodoro tracker")
+                Text("Pomodoros completed: \(pomoModel.pomosCompleted)")
+                Button(action: { self.pomoModel.startPomo() },
+                       label: { Text("Start Pomo")})
+            }
+            .padding(20)
+            .background(Color.white)
         }
     }
 }
