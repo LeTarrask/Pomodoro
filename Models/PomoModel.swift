@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 final class PomoModel: ObservableObject {
     @Published var pomosCompleted: Int = 0
