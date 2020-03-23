@@ -7,14 +7,9 @@
 //
 
 import Foundation
-import Combine
 
 final class PomoModel: ObservableObject {
-    @Published var pomosCompleted: Int = 0 {
-        willSet { self.objectWillChange.send() }
-    }
-    
-    let objectWillChange = ObservableObjectPublisher()
+    @Published var pomosCompleted: Int = 0
     
     var isResting = false
     
