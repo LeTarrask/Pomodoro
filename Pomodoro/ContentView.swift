@@ -20,14 +20,21 @@ struct ContentView: View {
                 Color.red
                     .edgesIgnoringSafeArea(.all)
             }
-            VStack {
+            VStack(alignment: .leading, spacing: 10) {
                 Text("Pomodoro tracker")
+                    .font(.headline)
                 Text("Pomodoros completed: \(pomoModel.pomosCompleted)")
-                Button(action: { self.pomoModel.startPomo() },
-                       label: { Text("Start Pomo")})
+                    .font(.subheadline)
+                if pomoModel.seconds < 1 {
+                    Button(action: { self.pomoModel.createTimer() },
+                    label: { Text("Start Pomo")})
+                } else {
+                    Text(pomoModel.label)
+                }
             }
             .padding(20)
             .background(Color.white)
+            .cornerRadius(10)
         }
     }
 }

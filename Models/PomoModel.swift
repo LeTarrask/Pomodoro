@@ -11,13 +11,17 @@ import Foundation
 final class PomoModel: ObservableObject {
     @Published var pomosCompleted: Int = 0
     
-    var isResting = false
+    @Published var isResting = false
     
     var timer: Timer?
     
-    func startPomo() {
-        var counter = Counter.working
-
+    var counter = Counter.working
+    
+    @Published var seconds = 0.0
+    
+    @Published var label = ""
+    
+    func createTimer() {
         switch isResting {
         case false:
             counter = Counter.working
@@ -30,21 +34,41 @@ final class PomoModel: ObservableObject {
         }
         
         print(counter)
-        timer = Timer.scheduledTimer(timeInterval: counter.rawValue,
+        seconds = counter.rawValue
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,
-                                     selector: #selector(endPomo),
+                                     selector: #selector(updateTime),
                                      userInfo: nil,
-                                     repeats: false)
+                                     repeats: true)
     }
     
-    @objc func endPomo() {
-        self.isResting.toggle()
+    @objc func updateTime() {
+        seconds -= 1
         
-        if isResting {
-            pomosCompleted += 1
-            startPomo()
+        print(seconds)
+        
+        label = timeString(time: seconds)
+        
+        if seconds < 1 {
+            timer?.invalidate()
+            
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) // Makes the phone vibrate
+            
+            self.isResting.toggle()
+            
+            if isResting {
+                pomosCompleted += 1
+                createTimer()
+            }
         }
-        
+    }
+    
+    // MARK: String Formatter for Countdown Label
+    func timeString(time: Double) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
 }
 
