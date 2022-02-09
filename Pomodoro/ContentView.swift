@@ -54,7 +54,7 @@ struct ContentView: View {
                             HStack {
                                 Button(action: { self.pomoModel.startTimer() },
                                 label: { Text("Restart Timer")})
-                                Button(action: { self.pomoModel.seconds = 0.0 },
+                                Button(action: { self.pomoModel.resetTimer() },
                                 label: { Text("Reset Timer")})
                             }
                         }
